@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <!-- <input type="text" v-model="message"> -->
+        <!-- 如果沒有使用v-model雙向綁定，可以這麼寫 -->
+        <input type="text" @keyup="setMessage" :value="message">
+        <p>{{message}}</p>
+        <!-- textarea 的 font 預設值是 13.3333px monospace  -->
+        <textarea rows="5" col="21" v-model="message"></textarea>
+        <p style="white-space:pre;font:13.3333px monospace;">{{message}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: { //變數放這裡！
+                message: '',
+                size:16,
+            },
+            methods: { //函數(方法)大部分放這裡!
+                setMessage(e){
+                    // console.log(e);
+                    this.message = e.target.value;
+                }
+            },
+            computed: {  //函數(方法)也可以放這裡，但是放在這裡的函數，不能傳參數，一定要有回傳值
+            },
+        });
+    </script>
+</body>
+
+</html>

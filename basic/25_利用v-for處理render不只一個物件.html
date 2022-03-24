@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script> -->
+    <style></style>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template -->       
+        <!-- 
+        <h2><img src="../../images/foot.gif"> About </h2>
+        <h2><img src="../../images/foot.gif"> Products </h2>
+        <h2><img src="../../images/foot.gif"> Contact </h2>
+        <h2><img src="../../images/foot.gif"> Nothing </h2>
+        <h2><img src="../../images/foot.gif"> Something </h2> 
+        -->
+
+        <!-- 1 -->
+        <!-- <h2 v-for="header in headers"><img src="../../images/foot.gif"> {{header}} </h2> -->
+
+        <!-- 2 -->
+        <template v-for="(header,index) in headers">
+            <h2><img src="../../images/foot.gif"> {{header}} <span> -- {{index}} </span></h2>
+        </template>
+    </div>
+    
+    <script> 
+        new Vue({
+            el: '#app',
+            data: {
+                headers: ['About','Products','Contact','Nothing','Something'],
+            },
+        });
+    </script>
+</body>
+</html>
+
+

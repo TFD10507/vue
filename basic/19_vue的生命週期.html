@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .theButton {
+            background-color: rosybrown;
+            color: aliceblue;
+            border-radius: 8px;
+            padding: 2px 8px;
+        }
+
+        .noText {
+            background-color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <!-- <button @click="addCount">add</button> -->
+        <!-- 如果只有一個事件是不用寫函數的 -->
+        <button @click="count += 1">add</button>
+        <button id="delButton">Delete</button>
+        <h2>{{count}}</h2>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+            },
+            methods: {
+                // addCount(){
+                //     this.count += 1
+                // },
+            },
+            computed: {},
+            beforeCreate() {
+                console.log(` beforeCreate() ----> count: ${this.count} `);
+                console.log(` beforeCreate() ----> $el: ${this.$el} `);
+            },
+            created() { //常用
+                console.log(` created() ----> count: ${this.count} `);
+                console.log(` created() ----> $el: ${this.$el} `);
+            },
+            beforeMount() {
+                console.log(` beforeMount() ----> $el: ${this.$el} `);
+            },
+            mounted() { //常用
+                console.log(` mounted() ----> $el: ${this.$el} `);
+
+            },
+            beforeUpdate() {
+                console.log(` beforeUpdate() ----> count: ${this.count} `);
+            },
+            updated() { 
+                console.log(` updated() ----> count: ${this.count} `);
+            },
+            beforeDestroy() {
+                console.log(` beforeDestroy() ----> count: ${this.count} `);
+
+            },
+            destroyed() {
+                console.log(` destroyed() ----> count: ${this.count} `);
+
+            },
+        });
+
+        document.getElementById("delButton").addEventListener("click",function(){
+            vm.$destroy();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        ol li{
+            background-color: rgb(203, 214, 224);
+            padding: 5px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        ol li:hover{
+            background-color: #abc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <h2>{{message}},新之助</h2>
+        <!-- <img v-bind:src="imgURL" alt=""> -->
+        <img :src="imgURL" alt="">
+        <p>
+            <input type="text" :placeholder="message">
+        </p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: { //變數放這裡！
+                message:'Hello',
+                imgURL:'https://assets.juksy.com/files/articles/98234/5e45968ad1311.gif',
+            },
+            methods: { //函數(方法)大部分放這裡!
+
+            },
+            computed: {  //函數(方法)也可以放這裡，但是放在這裡的函數，不能傳參數，一定要有回傳值
+
+            },
+        });
+    </script>
+</body>
+
+</html>

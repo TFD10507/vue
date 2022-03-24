@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <ul>
+            <li v-for="color in colors">{{color}}</li>
+        </ul>
+        <ol>
+            <!-- <li v-for="friend in friends">{{friend['name']}}</li> -->
+            <li v-for="friend in friends">{{friend.name}}</li>
+        </ol>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            // el:document.getElementById('app'),
+            data:{ //變數放這裡！
+                message:'Hello',
+                colors:['red','orange','yellow'],
+                friends:[
+                    {name:'Andy',age:'24',},
+                    {name:'Brian',age:'25',},
+                    {name:'Carl',age:'26',},
+                    {name:'David',age:'27',},
+                ]
+            },
+        });
+    </script>
+</body>
+</html>

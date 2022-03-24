@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .theButton {
+            background-color: rosybrown;
+            color: aliceblue;
+            border-radius: 8px;
+            padding: 2px 8px;
+        }
+
+        .noText {
+            background-color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <!-- 不能使用 v-model -->
+        <!-- <input type="file">  -->
+        <input type="file" @change="selectedFile">
+        <p>{{image}}</p>
+        <p>
+            <img :src="image">
+        </p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: { 
+                image:'',
+            },
+            methods: { 
+                selectedFile(e){
+                    let file = e.target.files[0] //在new Vue不要寫this比較好
+                    // let file = e.target.files.item(0)
+                    // 宣告readFile
+                    let readFile = new FileReader();
+                    readFile.readAsDataURL(file);
+                    readFile.addEventListener('load',this.loadimage)
+                },
+                loadimage(e){
+                    this.image = e.target.result;
+                },
+            },
+            computed: {  
+
+            },
+        });
+    </script>
+</body>
+
+</html>

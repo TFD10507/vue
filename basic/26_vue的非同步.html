@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        h1{
+            font-size: 18px;
+        }
+        img{
+            height: 250px;
+        }
+        .book{
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 250px;
+            height: 350px;
+            display: inline-block;
+            padding: 10px;
+            margin: 10px;
+
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template -->       
+        <div v-for="book in books" class="book">
+            <a :href="book.url">
+                <img :src="book.image">
+            </a>
+            <h1>{{checkWords(book.title)}}</h1>
+            <p>{{book.author}}</p>
+        </div>
+    </div>
+    
+    <script> 
+        new Vue({
+            el: '#app',
+            data: {
+                books: [],
+            },
+            methods: {
+                checkWords(theTitle){
+                    return theTitle.slice(0,40);
+                },
+            },
+            mounted() {
+                // $.getJSON('../../XML_JSON_CSV/bookData.json',function(res){})  // does not work
+                $.getJSON('../../XML_JSON_CSV/bookData.json', res => {
+                    console.log(res);
+                    this.books = res;
+                })
+            },
+        });
+    </script>
+</body>
+</html>
+
+

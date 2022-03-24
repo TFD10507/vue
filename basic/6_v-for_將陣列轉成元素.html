@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <select name="年份" v-model="selectedYear">
+            <option v-for="year in years">{{year}}</option>
+        </select>
+        <select name="月份" v-model="selectedMonth">
+            <option v-for="month in 12">{{month}}</option>
+        </select>
+        <select name="日" v-model="selectedDay">
+            <option v-for="day in 31">{{day}}</option>
+        </select>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            // el:document.getElementById('app'),
+            data: { //變數放這裡！
+                message: 'Hello',
+                months: ['January', 'Februery', 'March'],
+                years: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+                selectedYear:new Date().getFullYear(),
+                selectedMonth:new Date().getMonth() + 1, //month是從0開始算起，0代表一月
+                selectedDay:new Date().getDate(),
+            },
+        });
+
+
+        // 判斷月份的天數
+        // switch (month) {
+        //     case 1:
+        //     case 3:
+        //     case 5:
+        //     case 7:
+        //     case 8:
+        //     case 10:
+        //     case 12:
+        //         days = 31;
+        //         break;
+        //     case 4:
+        //     case 6:
+        //     case 9:
+        //     case 11:
+        //         days = 30;
+        //         break;
+        //     default:
+        //         if (year % 4 == 0) {
+        //             days = 29;
+        //         } else {
+        //             days = 28;
+        //         }
+        // }
+    </script>
+</body>
+
+</html>

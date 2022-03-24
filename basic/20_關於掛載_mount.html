@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .theButton {
+            background-color: rosybrown;
+            color: aliceblue;
+            border-radius: 8px;
+            padding: 2px 8px;
+        }
+
+        .noText {
+            background-color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <h2>{{message}}</h2>
+    </div>
+
+    <script>
+        // 掛載(mount):將Vue instance 和 HTML 的元素做連結
+        // (1)
+        // let vm = new Vue({
+        //     // el: '#app',  //CSS selector
+        //     el: document.getElementById('app'),
+        //     data: {
+        //         message: 'Hello',
+        //     },
+        // });
+
+        // (2) 先宣告再掛載
+        // let vm = new Vue({
+        //     data: {
+        //         message: 'Hello',
+        //     },
+        // });
+        // vm.$mount('#app')
+
+        // Vue3 不用再宣告
+        // new Vue({
+        //     data: {
+        //         message: 'Hello',
+        //     },
+        // }).$mount('#app')
+
+        // (3) 用template 和 HTML的元素做連結
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+            },
+
+            // template裡面放的都是原本的標籤
+            template:` 
+                <div>
+                    <h2 style="color:red;">{{message}}</h2>
+                </div>
+            `,
+        });
+        vm.$mount('#app')
+    </script>
+</body>
+
+</html>

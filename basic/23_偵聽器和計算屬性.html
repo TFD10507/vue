@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script> -->
+    <style></style>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template -->       
+       <input v-model.number="x"> + <input v-model.number="y"> = <span>{{z}}</span>
+    </div>
+    
+    <script> 
+        new Vue({
+            el: '#app',
+            data: {
+                x: 0,
+                y: 0,
+                // z: 0,  //如果用 computed 來寫，要註解此行
+            },
+            computed: {
+                z(){
+                    return this.x + this.y
+                },
+            },
+            watch: {  // 偵聽器: 主要用來偵聽 data 和 computed 的變化
+                // 1 宣告成函數(方法) 
+                // x(val){
+                //     this.z = val + this.y
+                // },   
+                // y(val){
+                //     this.z = this.x + val
+                // },           
+
+                // 2 宣告成物件
+                
+            },
+        });
+    </script>
+</body>
+</html>
+
+

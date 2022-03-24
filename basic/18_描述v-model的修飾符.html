@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .theButton {
+            background-color: rosybrown;
+            color: aliceblue;
+            border-radius: 8px;
+            padding: 2px 8px;
+        }
+
+        .noText {
+            background-color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <!-- v-model modifier(修飾符) 
+        lazy: 取代input監聽change事件。
+        trigger when onblur(發生 change事件) 等待輸入完成之後，再顯示結果。
+        number: parseInt 將字串轉為整數值。
+        trim: trim()刪除輸入時的前後空白，中間不管。
+    -->
+    <div id="app">
+        Message: <input v-model="message">
+        <h2>{{message}}</h2>
+
+        Message: <input v-model.lazy="message">
+        <h2>{{message}}</h2>
+
+        Number: <input v-model.number="num">
+        <h2>{{num + 1}}</h2>
+
+        Name: <input v-model.trim="name">
+        <h2>[{{name}}]</h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: { 
+                message:'',
+                num: 0,
+                name:'',
+            },
+            methods: { 
+                
+            },
+            computed: {  
+
+            },
+        });
+    </script>
+</body>
+
+</html>

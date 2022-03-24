@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- HTML DOM template -->
+    <div id="app">
+        <button v-for="friend in friends" @click="action">{{friend.name}}</button>
+    </div>
+
+    <script>
+        // ======= 1
+        // this在JS裡代表:執行function的當下的外層物件，所以在執行的時候才會存在 
+        // function test(){
+        //     console.log(this);
+        // }
+        //執行:test()
+        //結果:windows物件
+
+        // ======= 2
+        // let man = {
+        //     name:'Peter',
+        //     age:40,
+        //     gender:'male',
+        //     favoriateColor:['black','white','gray'],
+        //     car:{
+        //         make:'BMW',
+        //         mode:'xs',
+        //         year:2021,
+        //     },
+        //     retired: false,
+        //     sayHello(){
+        //         console.log('Hello');
+        //         console.log(this);
+        //     },
+        // }
+        //執行:man.sayHello()
+        //結果:man 物件
+
+        // ======== 3 
+        // arrow function 的 this，裡面和外面代表相同的物件
+
+        //在vue裡面的this代表new Vue() ---> Vue instance實例
+        new Vue({
+            el: '#app',
+            // el:document.getElementById('app'),
+            data: { //變數放這裡！
+                message: 'Hello',
+                friends: [
+                    { name: 'Andy', age: '24', },
+                    { name: 'Brian', age: '25', },
+                    { name: 'Carl', age: '26', },
+                    { name: 'David', age: '27', },
+                ],
+            },
+            methods: {
+                action() {
+                    console.log(this.friends[1].name); //Brian
+                    console.log(this.$el); // <div id='app'>...</div>
+                    console.log(this.$data.message); //Hello
+                    console.log(this.others());
+                },
+                others(){
+                    console.log('other function');
+                }
+            },
+        });
+
+    </script>
+</body>
+
+</html>
