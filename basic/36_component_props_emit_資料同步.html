@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template --> 
+        <counter :init="count" @the-update="setCount"></counter>
+        <h2>new Vue -- {{count}}</h2> 
+        
+    </div>
+    
+    <script> 
+        Vue.component('counter', {    
+            props: ['init'],
+            data(){
+                return {
+                    count: this.init, //利用counter 組件的初值由上層取得
+                };
+            },
+            methods: {
+                sync(){
+                    $this.$emit('the-update' , this.count)
+                },
+            },
+            template: `
+                <div>
+                    <button @click="count+=1"> Add </button>
+                    <button @click="count"> sync </button>
+                    <h2>{{count}}</h2>
+                </div>
+            `,
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+            },
+            methods: {
+                setCount(count){
+                    this.count = count;
+                },
+            },
+        });
+    </script>
+</body>
+</html>

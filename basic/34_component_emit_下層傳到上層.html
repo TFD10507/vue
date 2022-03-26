@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template --> 
+        <!-- 1 -->
+        <!-- <my-button></my-button> -->
+
+        <!-- 2, 2-1, 2-2 -->
+        <my-button @my-click="clicked"></my-button>
+    </div>
+    
+    <script> 
+        Vue.component('my-button', { 
+            // 1   
+            // template: `<button> Click me! </button>`,
+
+            // 2
+            template: `<button @click="myClick"> Click me! </button>`,
+            methods: {
+                myClick(){
+                    // 2
+                    // alert('Hi, child!')
+
+                    // 2-1 沒有傳值
+                    // this.$emit('my-click');     // child 發出自訂事件「my-click」
+
+                    // 2-2 傳一個值
+                    // this.$emit('my-click', 100); 
+
+                    // 2-3 傳好幾個值
+                    this.$emit('my-click', 100, 200, 300); 
+
+
+                },
+            },
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+            },
+            methods: {
+                // 2-1
+                // clicked(){
+                //     alert('Hi, Parent!');
+                // }
+
+                // 2-2
+                // clicked(x){
+                //     alert(`Hi, Parent! Give me ${x} dollars.`);
+                // }
+
+                // 2-3
+                clicked(x, y, z){
+                    alert(`Hi, Parent! Give me ${x} or ${y} or ${z} dollars.`);
+                }
+            },
+        });
+    </script>
+</body>
+</html>

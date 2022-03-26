@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template --> 
+        <button @click="content='name'">Name</button>
+        <button @click="content='date'">Date</button>
+        <button @click="content='lessons'">Lessons</button>
+        <button @click="content='apply'">Apply</button>
+        <button @click="content='donothing'">Do Nothing</button>
+        
+        <!-- keep-alive 點擊按鈕轉換時不會讓原本輸入的資料消失 -->
+        <keep-alive>  
+            <component :is="content"></component>
+        </keep-alive>
+    </div>
+    
+    <script> 
+        Vue.component('name', {   
+            template: `
+                <p>
+                    Name: <input type="text">
+                </p>
+            `,
+        });
+        Vue.component('date', {   
+            template: `
+                <p>
+                    <input type="checkbox"> Morning
+                    <input type="checkbox"> Afternoon
+                    <input type="checkbox"> Evening
+                </p>
+            `,
+        });
+        Vue.component('lessons', {   
+            template: `
+                <p>
+                    <input type="checkbox"> HTML
+                    <input type="checkbox"> CSS
+                    <input type="checkbox"> JS
+                    <input type="checkbox"> JQuery
+                    <input type="checkbox"> HTML5
+                </p>
+            `,
+        });
+        Vue.component('apply', {   
+            template: `
+                <p>
+                    <textarea></textarea>
+                </p>
+            `,
+        });
+        Vue.component('donothing', {   
+            template: `
+                <p>
+                    comments: <input type="text">
+                </p>
+            `,
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                content: 'name',
+            },
+            methods: {},
+        });
+    </script>
+</body>
+</html>

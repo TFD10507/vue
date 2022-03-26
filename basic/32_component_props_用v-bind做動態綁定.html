@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1 -->
+        <!-- <post :the-text="message"></post> -->
+        
+        <!-- 2 處理陣列-->
+        <!-- <post v-for="item in messageArray" :the-text="item"></post> -->
+
+        <!-- 3 處理(陣列裡的)物件 -->
+        <!-- <post v-for="item in messageObject" :the-text="item.message" :author="item.owner"></post> -->
+
+        <!-- 4 render (陣列裡的)物件-->
+        <!-- <post v-for="item in messageObject" v-bind="item"></post> -->
+        <post v-for="item in messageObject" v-bind="item"/>
+
+    </div>
+
+    <script>
+        Vue.component('post', {
+            // 1 ,2
+            // props:['the-text'], //kebab-case camelCase
+            // template:`<h2>{{theText}}</h2>`, //使用props屬性，中間有-的必須用 camelCase
+
+            // 3
+            // props: ['the-text','author'], 
+            // template: `<h2>{{author}}: {{theText}}</h2>`
+
+            // 4
+            props: ['message','owner'], 
+            template: `<h2>{{owner}}: {{message}}</h2>`
+        });
+       
+        new Vue({
+            el: '#app',
+            data:{
+                // 1
+                // message: 'Hello,Props!',
+                
+                // // 2 建立陣列
+                // messageArray:['Hello','Props','World','!'],
+
+                // 3, 4建立(陣列裡的)物件
+                messageObject: [
+                    {message: 'Hello', owner: 'Allen'},
+                    {message: 'Props', owner: 'Brian'},
+                    {message: 'World', owner: 'Carl'},
+                    {message: '!',     owner: 'Dale'},
+                ],
+            },
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>
