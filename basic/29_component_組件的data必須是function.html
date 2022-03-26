@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        
+        <button @click="count += 1">Add</button>
+        <h2>{{count}}</h2>
+        <button @click="count += 1">Add</button>
+        <h2>{{count}}</h2>
+        
+        <hr>
+
+        <!-- 組件不會互相影響 -->
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
+    </div>
+
+    <script>
+        // global component
+        // Vue.component('組件名稱',{
+        //     template: ``, //用來定義視覺元件
+        // });
+        Vue.component('counter',{
+            data(){
+                return{
+                    count: 0 ,
+                }
+            },
+            template: `
+            <div>
+                <button @click="count += 1">Add</button>
+                <h2>{{count}}</h2>
+            </div>
+            `, //用來定義視覺元件
+        });
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                count:0,
+            },
+            methods: {
+            },
+        });
+
+
+
+    </script>
+</body>
+
+</html>

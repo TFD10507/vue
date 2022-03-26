@@ -6,6 +6,7 @@
     <script src="../js/vue.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <style>
         h1{
             font-size: 18px;
@@ -50,15 +51,46 @@
                 },
             },
             mounted() {
-                // $.getJSON('../../XML_JSON_CSV/bookData.json',function(res){})  // does not work
-                $.getJSON('../../XML_JSON_CSV/bookData.json', res => {
-                    console.log(res);
-                    this.books = res;
-                })
+            // jQuery
+                // $.getJSON('../XML_JSON_CSV/bookData.json',function(res){})  // does not work
+                // $.getJSON('../XML_JSON_CSV/bookData.json', res => {
+                //     console.log(res);
+                //     this.books = res;
+                // });
+
+                // Promise ---> then(callback) ---> 傳回值是 Promise 物件: $().then().then().then()....
+                // $.getJSON('../XML_JSON_CSV/bookData.json').then(res => {
+                //     console.log(res);
+                //     this.books = res;
+                // })
+
+            // Axios
+                // 語法 1
+                // axios.get('../XML_JSON_CSV/bookData.json').then(res => {
+                //     // console.log(res.data);
+                //     this.books = res.data;
+                // })
+                // axios.get('../../XML_JSON_CSV/bookData.json').then(res => this.books = res.data)
+
+                // 語法 2
+                // axios({
+                //     method: 'GET',
+                //     headers: {'Content-Type':'application/json'},
+                //     baseURL: 'http://127.0.0.1:5500/',
+                //     url: 'VueJS/basic/26_vue的非同步.html',
+                //     params: {sn: 12345,},
+                //     responseType: 'json',
+                //     responseEncoding: 'utf8',
+                // }).then(res => {})     //成功時的處理函數
+                // .catch(error => {})    //失敗時的處理函數
+
+            // Fetch API
+                // fetch('../XML_JSON_CSV/bookData.json').then(res => console.log(res))
+                // fetch('../XML_JSON_CSV/bookData.json').then(res => console.log(res.json()))
+                // fetch('../XML_JSON_CSV/bookData.json').then(res => res.json()).then(res => console.log(res))
+                fetch('../XML_JSON_CSV/bookData.json').then(res => res.json()).then(res => this.books = res)
             },
         });
     </script>
 </body>
 </html>
-
-

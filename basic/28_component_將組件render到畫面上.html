@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- <my-component></my-component> -->
+        <!-- <select>
+            <my-select></my-select>
+            <my-select></my-select>
+            <my-select></my-select>
+        </select>
+        <ul>
+            <my-list></my-list>
+            <my-list></my-list>
+            <my-list></my-list>
+        </ul>
+        <table>
+            <tr border="1">
+                <the-td></the-td>
+                <the-td></the-td>
+                <the-td></the-td>
+                <the-td></the-td>
+            </tr>
+        </table> -->
+    </div>
+
+    <script>
+        // global component
+        // Vue.component('組件名稱',{
+        //     template: ``, //用來定義視覺元件
+        // });
+        Vue.component('my-select', {
+            template: `<option>Hello</option>`, //用來定義視覺元件
+        });
+        Vue.component('my-list', {
+            template: `<li>Hello</li>`, //用來定義視覺元件
+        });
+        Vue.component('the-td', {
+            template: `<td>Hello</td>`, //用來定義視覺元件
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+
+            },
+
+            // 在template 必須要有一個父元素(一個root)把他們包住
+            template: `
+            <div>
+            <select>
+            <my-select></my-select>
+            <my-select></my-select>
+            <my-select></my-select>
+        </select>
+        <ul>
+            <my-list></my-list>
+            <my-list></my-list>
+            <my-list></my-list>
+        </ul>
+        <table border="1">
+            <tr>
+                <the-td></the-td>
+                <the-td></the-td>
+                <the-td></the-td>
+                <the-td></the-td>
+            </tr>
+        </table>
+        </div>
+            `,
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>
