@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>    
+    <!-- 是組件要觸發原生程式就要加native -->
+    <div id="app">  <!-- HTML DOM template --> 
+        <my-button></my-button>
+        <my-counter></my-counter>
+    </div>
+    
+    <script> 
+    const bus = new Vue(); // 建立event bus
+        Vue.component('my-button', {   
+            template: `
+                <button @click="clicked"> Add <button>
+            `,
+            methods: { //發出自訂事件
+                clicked(){
+                    // bus.$emit('w');
+                    // 如果發出自訂事件並且傳值
+                    bus.$emit('w',this.payload);
+
+                }
+            },
+            data(){
+                return{
+                    payload: 100,
+                };
+            },
+        });
+        Vue.component('my-counter', {  
+            data(){
+                return{
+                    count: 0,
+                };
+            },
+            template: `
+                <h2>{{Count}}</h2>
+            `,
+            // 在mounted 的時候聆聽該事件
+            mounted() {
+                // 如果有傳值，就令一個變數收，例:x
+                bus.$on('w',(x) => {
+                    this.count +=1 
+                    alert(`${x}`)
+                });
+            },
+        });
+
+        new Vue({
+            el: '#app',
+        });
+    </script>
+</body>
+</html>

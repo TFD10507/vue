@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueJS -- vue-router 路由器</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+</head>
+<body>    
+    <div id="app">  <!-- HTML DOM template --> 
+        <button @click="addCount"> Add </button>
+        <h2>{{count}}</h2>
+    </div>
+
+    <script>
+        // 讓變數全部讓狀態管
+        const store = new Vuex.Store({ //global store
+            state:{ //類似 data, 存放變數
+                count: 0,
+                x:true,
+                y:new Date(),
+                z:'ABC',
+            },
+            mutations: { //類似 methods, 存放函數
+                addStoreCount(state){ //預設帶參數
+                    state.count += 1;
+                },
+            },
+        });
+
+
+
+        new Vue({
+            el: '#app',
+            store,    // store:store,
+            data:{
+                // count: 0, //變數讓狀態管，不能也寫在這，會打架
+            },
+            methods: {
+                // addCount(){
+                //     this.count += 1;
+                // },
+                addCount(){
+                    this.$store.commit('addStoreCount');
+                },
+            },
+            computed: {
+                count(){
+                    return this.$store.state.count;
+                },
+            },
+        });
+    </script>
+</body>
+</html>

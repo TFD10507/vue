@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        counter.js
+        const Counter = Vue.component('counter', { ....})
+
+        export default Counter;
+
+        new.js
+        import Counter from '相對路徑'
+        import Counter from './counter' //副檔名如果是js 可以省略
+        new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components: {
+                Counter, //Counter: Counter,
+            },
+            template: `
+                    <div>
+                        <Counter />
+                    </div>
+                `
+        })
+
+        // ================================================
+        src / main.js
+        new Vue({
+            el: '#app',
+            render: h => h(App)
+        })
+
+        //render 函數會傳入一個createElement()
+        // createElement 函數：用來輸入一個組件，會回傳他要輸出的元素(element)
+        render: function(createElement) {
+            return createElement(輸入一個組件);
+        },
+
+        // 簡化的寫法
+        render: createElement => createElement(App),
+
+        // 慣例上，createElement 會寫成 h
+        render: h => h(App),
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
