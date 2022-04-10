@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Train using AJAX(jQuery)</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.js"></script>     -->
+</head>
+<body>
+    <h2>Train</h2>
+    <div>
+        <button id="loadButton"> Load Data </button>
+    </div>
+    <div id="feedback"></div>
+
+    <script>
+        $(document).ready(function(){
+            $('#loadButton').click(function(){
+                $.ajax({
+                    url: '../XML_JSON_CSV/StationExit.xml',
+                    // url: 'https://ptx.transportdata.tw/MOTC/v3/Rail/TRA/StationExit?%24top=242&%24format=XML',
+                    dataType: 'xml',
+                    success(res){
+                        stationExit = res.querySelectorAll('StationExit');
+
+                        tableData = '<table border="1">'
+                            tableData += `<tr>`
+                                tableData += `<th>車站</th>`
+                                tableData += `<th>緯度</th>`
+                                tableData += `<th>經度</th>`
+                            tableData += `</tr>`
+
+                            // for(let i = 0; i < 5; i++){
+                            for(let i = 0; i < stationExit.length; i++){
+                                stationName = stationExit[i].querySelector('StationName>Zh_tw').firstChild.nodeValue;
+                                latitude = stationExit[i].querySelector('ExitPosition>PositionLat').firstChild.nodeValue;
+                                longitude = stationExit[i].querySelector('ExitPosition>PositionLon').firstChild.nodeValue;
+                                
+                                createXMLNodes()
+                            }
+                        tableData += '</table>'
+                        $('#feedback').append(tableData)
+                        
+                    },
+                });
+            });
+            
+            function createXMLNodes(){
+                tableData += `<tr>`
+                    tableData += `<td>${stationName}</td>`
+                    tableData += `<td>${latitude}</td>`
+                    tableData += `<td>${longitude}</td>`
+                tableData += `</tr>`
+            }
+        });
+    </script>
+</body>
+</html>
