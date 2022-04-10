@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>VueJS</title>
-    <script src="../js/vue.js"></script>
+    <script src="/vueJS/js/vue.js"></script>
 </head>
 <body>    
     <div id="app">  <!-- HTML DOM template -->       
@@ -53,7 +53,7 @@
             },
             template: `
                 <div>
-                    <todo-input @abc="ad           dTask"></todo-input>
+                    <todo-input @abc="addTask"></todo-input>
                     <ol>
                         <todo-item v-for="(task,index) in tasks" v-bind:xyz="task" @click.native="removeTask(index)"></todo-item>
                     </ol> 
